@@ -26,7 +26,7 @@ class Ejercicio4Test {
 
 
     @Test
-    void pokemonMasGordosQue() {
+    void pokemonMasGordosQueCasoNormal() {
         Pokemon[] pokemonEsperados = {
                 new Pokemon(20, 3, "venusaur", 1000),
                 new Pokemon(17, 6, "charizard", 905),
@@ -35,6 +35,34 @@ class Ejercicio4Test {
         Pokemon[] pokemonActuales = ej.pokemonMasGordosQue(250);
         Assertions.assertArrayEquals(pokemonEsperados, pokemonActuales);
     }
+
+    @Test
+    void pokemonMasGordosQueCasoTodos() {
+        Pokemon[] pokemonEsperados = ej.arrayPokemons;
+        Pokemon[] pokemonActuales = ej.pokemonMasGordosQue(0);
+        Assertions.assertArrayEquals(pokemonEsperados, pokemonActuales);
+    }
+
+    @Test
+    void pokemonMasGordosQueCasoNinguno() {
+        Pokemon[] pokemonEsperados = new Pokemon[]{};
+        Pokemon[] pokemonActuales = ej.pokemonMasGordosQue(50000);
+        Assertions.assertArrayEquals(pokemonEsperados, pokemonActuales);
+    }
+
+    @Test
+    void pokemonMasGordosQueCasoPesoNegativo() {
+        Pokemon[] pokemonEsperados = ej.arrayPokemons;
+        Pokemon[] pokemonActuales = ej.pokemonMasGordosQue(-100);
+        Assertions.assertArrayEquals(pokemonEsperados, pokemonActuales);
+    }
+
+
+    @Test
+    void pokemonMasGordosQueCasoNull() {
+         Assertions.assertThrows(NullPointerException.class, ()-> ej.pokemonMasGordosQue(null));
+    }
+
 
     @Test
     void getPokemonQueContengaLasSiguientesLetras() {
